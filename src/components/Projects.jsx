@@ -71,7 +71,7 @@ export default function Projects() {
               <div className="lg:col-span-4 space-y-6">
                 <div className="space-y-2">
                   <span className="text-[10px] uppercase tracking-widest text-zinc-500 font-bold block">
-                    {`Case Study ${project.id} // ${project.category}`}
+                    {`Case Study ${project.id} — ${project.category}`}
                   </span>
                   <h3 className="text-2xl md:text-3xl font-serif text-white tracking-tight">
                     {project.title}

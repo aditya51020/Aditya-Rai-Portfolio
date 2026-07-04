@@ -20,7 +20,7 @@ export default function About() {
           
           <div className="space-y-3">
             <h3 className="text-xs uppercase tracking-widest text-white font-semibold">
-              01 // How I Started Building
+              01 &mdash; How I Started Building
             </h3>
             <p>
               I began building software out of a fascination with creating tools that people actually use. What started as simple scripting quickly evolved into a passion for designing complex systems that bridge user interface details with robust server-side infrastructures.
@@ -29,7 +29,7 @@ export default function About() {
 
           <div className="space-y-3">
             <h3 className="text-xs uppercase tracking-widest text-white font-semibold">
-              02 // The Shift to Business Problems
+              02 &mdash; The Shift to Business Problems
             </h3>
             <p>
               Many developers focus solely on frameworks and code syntax. I view code as a means to a business end. Whether it is increasing a SaaS onboarding rate, automating invoice mapping, or creating high-intent real estate lead captures, my focus is always on writing software that improves bottom-line metrics.
@@ -38,7 +38,7 @@ export default function About() {
 
           <div className="space-y-3">
             <h3 className="text-xs uppercase tracking-widest text-white font-semibold">
-              03 // My Development Approach
+              03 &mdash; My Development Approach
             </h3>
             <p>
               I build production-ready applications by prioritizing maintainability, modular architecture, and optimization. This means self-documenting APIs, containerized environments, strict types, and robust databases that won't fail under traffic spikes.
@@ -47,7 +47,7 @@ export default function About() {
 
           <div className="space-y-3">
             <h3 className="text-xs uppercase tracking-widest text-white font-semibold">
-              04 // Commitment to Quality
+              04 &mdash; Commitment to Quality
             </h3>
             <p>
               Every line of code I ship is optimized to perform. I do not rely on bloated plugins or cookie-cutter templates. When you work with me, you get custom engineering built specifically for your business constraints, ensuring a fast, secure, and future-proof digital product.

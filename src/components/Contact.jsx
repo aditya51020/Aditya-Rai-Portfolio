@@ -4,19 +4,41 @@ import { Mail, ArrowRight, Check } from 'lucide-react';
 
 export default function Contact() {
   const [formState, setFormState] = useState({ name: '', email: '', message: '' });
-  const [status, setStatus] = useState('idle'); // idle | loading | success
+  const [status, setStatus] = useState('idle'); // idle | loading | success | error
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formState.name || !formState.email || !formState.message) return;
 
     setStatus('loading');
     
-    // Simulate API request
-    setTimeout(() => {
-      setStatus('success');
-      setFormState({ name: '', email: '', message: '' });
-    }, 1500);
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || "YOUR_ACCESS_KEY_HERE",
+          name: formState.name,
+          email: formState.email,
+          message: formState.message,
+          subject: `New Portfolio Message from ${formState.name}`,
+        }),
+      });
+      
+      const result = await response.json();
+      if (result.success) {
+        setStatus('success');
+        setFormState({ name: '', email: '', message: '' });
+      } else {
+        setStatus('error');
+      }
+    } catch (error) {
+      console.error(error);
+      setStatus('error');
+    }
   };
 
   return (
@@ -45,11 +67,11 @@ export default function Contact() {
                 Connect Directly
               </span>
               <a
-                href="mailto:contact@adityarai.in"
+                href="mailto:adityaworkdesk@gmail.com"
                 className="flex items-center space-x-3 text-sm text-zinc-300 hover:text-white transition-colors duration-300 group"
               >
                 <Mail className="h-4 w-4 text-zinc-500 group-hover:text-white transition-colors duration-300" />
-                <span>contact@adityarai.in</span>
+                <span>adityaworkdesk@gmail.com</span>
               </a>
             </div>
 
@@ -189,6 +211,12 @@ export default function Contact() {
                       />
                     </div>
                   </div>
+
+                  {status === 'error' && (
+                    <div className="p-3 text-xs bg-red-500/10 border border-red-500/30 text-red-400 rounded-sm">
+                      Something went wrong. Please check your credentials or email me directly at adityaworkdesk@gmail.com.
+                    </div>
+                  )}
 
                   {/* Submit Button */}
                   <button
