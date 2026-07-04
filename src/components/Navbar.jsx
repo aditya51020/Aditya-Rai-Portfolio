@@ -64,7 +64,7 @@ export default function Navbar() {
         </a>
 
         {/* Desktop Navigation Links */}
-        <div className="hidden md:flex items-center space-x-8">
+        <div className="hidden lg:flex items-center space-x-8">
           {navLinks.map((link) => (
             <a
               key={link.label}
@@ -88,7 +88,7 @@ export default function Navbar() {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="p-2 md:hidden text-zinc-400 hover:text-white transition-colors duration-300"
+          className="p-2 lg:hidden text-zinc-400 hover:text-white transition-colors duration-300"
           aria-label="Toggle Menu"
         >
           {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -96,7 +96,7 @@ export default function Navbar() {
       </div>
 
       <div
-        className={`fixed inset-x-0 bottom-0 top-[60px] z-30 bg-[#030303]/98 backdrop-blur-2xl md:hidden overflow-y-auto transition-all duration-500 ease-in-out ${
+        className={`fixed inset-x-0 bottom-0 top-[60px] z-30 bg-[#030303]/98 backdrop-blur-2xl lg:hidden overflow-y-auto transition-all duration-500 ease-in-out ${
           isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
       >
