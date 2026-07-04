@@ -61,7 +61,6 @@ export default function Navbar() {
           <span className="font-serif text-lg md:text-xl tracking-tight text-white transition-colors duration-300 group-hover:text-zinc-300">
             Aditya Rai
           </span>
-          <span className="h-1.5 w-1.5 rounded-full bg-white opacity-40 group-hover:opacity-100 transition-opacity duration-300" />
         </a>
 
         {/* Desktop Navigation Links */}
