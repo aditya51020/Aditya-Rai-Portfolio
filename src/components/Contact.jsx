@@ -123,7 +123,7 @@ export default function Contact() {
 
         {/* Right Column: Contact Form */}
         <div className="lg:col-span-7">
-          <div className="glass-panel p-8 md:p-10 rounded-lg relative overflow-hidden">
+          <div className="glass-panel p-6 sm:p-8 md:p-10 rounded-lg relative overflow-hidden">
             <AnimatePresence mode="wait">
               {status === 'success' ? (
                 <motion.div

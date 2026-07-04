@@ -44,7 +44,7 @@ export default function Hero() {
         {/* Big Display Title */}
         <motion.h1
           variants={itemVariants}
-          className="text-4xl sm:text-5xl md:text-7xl font-serif text-white tracking-tight leading-[1.08] max-w-4xl"
+          className="text-3xl sm:text-5xl md:text-7xl font-serif text-white tracking-tight leading-[1.08] max-w-4xl break-words"
         >
           Building Software That Solves <span className="text-gradient">Real Business Problems.</span>
         </motion.h1>

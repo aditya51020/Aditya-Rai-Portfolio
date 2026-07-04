@@ -95,13 +95,12 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Drawer */}
       <div
-        className={`fixed inset-0 top-[60px] z-30 bg-[#030303]/98 backdrop-blur-2xl md:hidden transition-all duration-500 ease-in-out ${
+        className={`fixed inset-x-0 bottom-0 top-[60px] z-30 bg-[#030303]/98 backdrop-blur-2xl md:hidden overflow-y-auto transition-all duration-500 ease-in-out ${
           isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
       >
-        <div className="flex flex-col space-y-8 p-8 items-center justify-center h-[calc(100vh-100px)]">
+        <div className="flex flex-col space-y-8 p-8 items-center justify-center min-h-[calc(100vh-80px)] py-12">
           {navLinks.map((link) => (
             <a
               key={link.label}

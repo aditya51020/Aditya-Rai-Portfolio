@@ -5,10 +5,17 @@
 @layer base {
   html {
     scroll-behavior: auto; /* Required for Lenis smooth scroll */
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
+    -webkit-text-size-adjust: 100%;
   }
   
   body {
-    @apply bg-[#030303] text-zinc-100 antialiased overflow-x-hidden selection:bg-zinc-800 selection:text-white;
+    @apply bg-[#030303] text-zinc-100 antialiased selection:bg-zinc-800 selection:text-white;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
   }
 }
 
