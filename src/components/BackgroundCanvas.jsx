@@ -31,7 +31,7 @@ export default function BackgroundCanvas() {
     const handleMouseLeave = () => {
       mouse.active = false;
     };
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
     window.addEventListener('mouseleave', handleMouseLeave);
 
     // Slow particles
@@ -49,75 +49,41 @@ export default function BackgroundCanvas() {
       });
     }
 
-    // Animation Loop
-    const render = () => {
-      // Clear canvas
-      ctx.fillStyle = '#030303';
-      ctx.fillRect(0, 0, width, height);
+    // Animation Loop — grid is now CSS (drawn once), canvas only does glow + particles at ~30fps
+    let last = 0;
+    const render = (now = 0) => {
+      animationFrameId = requestAnimationFrame(render);
+      // skip work while the page is scrolling so scroll frames stay smooth
+      if (document.hidden || window.lenis?.isScrolling || now - last < 33) return;
+      last = now;
 
-      // 1. Draw subtle grid background
-      const gridSize = 80;
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.015)';
-      ctx.lineWidth = 1;
+      ctx.clearRect(0, 0, width, height);
 
-      // Draw vertical lines
-      for (let x = 0; x < width; x += gridSize) {
-        ctx.beginPath();
-        ctx.moveTo(x, 0);
-        ctx.lineTo(x, height);
-        ctx.stroke();
-      }
-
-      // Draw horizontal lines
-      for (let y = 0; y < height; y += gridSize) {
-        ctx.beginPath();
-        ctx.moveTo(0, y);
-        ctx.lineTo(width, y);
-        ctx.stroke();
-      }
-
-      // 2. Draw hover glow (light source radial gradient)
       if (mouse.active) {
         const glowRadius = Math.min(width, height) * 0.45;
-        const gradient = ctx.createRadialGradient(
-          mouse.x,
-          mouse.y,
-          0,
-          mouse.x,
-          mouse.y,
-          glowRadius
-        );
+        const gradient = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, glowRadius);
         gradient.addColorStop(0, 'rgba(255, 255, 255, 0.025)');
         gradient.addColorStop(0.5, 'rgba(255, 255, 255, 0.005)');
         gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
-
         ctx.fillStyle = gradient;
         ctx.fillRect(0, 0, width, height);
       }
 
-      // 3. Draw slow moving particles
       particles.forEach((p) => {
-        // Move particle
-        p.x += p.vx;
-        p.y += p.vy;
-
-        // Wrap boundaries
+        p.x += p.vx * 2;
+        p.y += p.vy * 2;
         if (p.x < 0) p.x = width;
         if (p.x > width) p.x = 0;
         if (p.y < 0) p.y = height;
         if (p.y > height) p.y = 0;
-
-        // Draw particle
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha})`;
         ctx.fill();
       });
-
-      animationFrameId = requestAnimationFrame(render);
     };
 
-    render();
+    animationFrameId = requestAnimationFrame(render);
 
     return () => {
       window.removeEventListener('resize', handleResize);
@@ -128,7 +94,15 @@ export default function BackgroundCanvas() {
   }, []);
 
   return (
-    <div className="fixed inset-0 -z-20 w-full h-full overflow-hidden pointer-events-none select-none animate-fade-in">
+    <div
+      className="fixed inset-0 -z-20 w-full h-full overflow-hidden pointer-events-none select-none animate-fade-in"
+      style={{
+        backgroundColor: '#030303',
+        backgroundImage:
+          'linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px)',
+        backgroundSize: '80px 80px',
+      }}
+    >
       <canvas ref={canvasRef} className="absolute inset-0 block w-full h-full" />
       {/* Premium grain CSS overlay */}
       <div 

@@ -1,0 +1,43 @@
+/* characters peeking from behind section edges — same sticker ink as the hero crowd */
+.peek-row {
+  position: relative;
+  height: 150px;
+  max-width: 64rem;
+  margin: 0 auto;
+  overflow: hidden;
+  pointer-events: none;
+}
+/* the "fence" they hide behind */
+.peek-row::after {
+  content: '';
+  position: absolute; left: 12px; right: 12px; bottom: 4px; height: 14px;
+  background: #f4f4f4;
+  border: 3px solid #111; border-radius: 999px;
+  box-shadow: 0 0 0 4px #fff;
+  z-index: 2;
+}
+.peeker { position: absolute; }
+.peek-row .peeker { z-index: 1; }
+.peeker-svg { display: block; width: 100%; height: 100%; overflow: visible; }
+
+.peeker path, .peeker circle, .peeker ellipse, .peeker rect {
+  stroke: #111; stroke-width: 3; stroke-linejoin: round; stroke-linecap: round;
+}
+.peeker .halo { fill: #fff; stroke: #fff; stroke-width: 12; }
+.peeker .ns { stroke: none; }
+.peeker .eyes { transform-box: fill-box; transform-origin: center; }
+.peeker .eyes.blink { animation: peek-blink .2s ease-in-out; }
+@keyframes peek-blink { 50% { transform: scaleY(.1); } }
+
+/* a peeker sitting on top of a card edge */
+.peek-on {
+  position: absolute; bottom: 100%; overflow: hidden; pointer-events: none;
+  margin-bottom: -3px; /* tuck under the card's ink border */
+}
+
+/* phones: fewer, smaller peekers so none get cut at the screen edge */
+@media (max-width: 640px) {
+  .peek-row { height: 120px; }
+  .peek-row .peeker { transform: scale(.72); transform-origin: left 56%; } /* pivot at the fence line */
+  .peek-row .peeker:nth-child(n+4) { display: none; }
+}

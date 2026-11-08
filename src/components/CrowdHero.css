@@ -1,0 +1,66 @@
+
+  .crowd-hero { --bg: #030303; --ink: #111; }
+
+  .crowd-hero { position: relative; height: 100vh; min-height: 560px; overflow: hidden; background: var(--bg); }
+  .crowd-hero .crowd { position: absolute; inset: 0; opacity: 0; transition: opacity .8s ease; contain: layout paint; }
+  .crowd-hero .crowd.ready { opacity: 1; }
+  .crowd .row { position: absolute; inset: 0; will-change: transform; }
+  .crowd .ch { position: absolute; transform-origin: 50% 35.1%; }
+  .crowd .ch > svg { display: block; width: 100%; height: 100%; overflow: visible; }
+  .crowd-hero .fade {
+    position: absolute; inset: 0; pointer-events: none;
+    background:
+      linear-gradient(to bottom,
+        #030303 0%, #030303 17%,
+        rgba(3,3,3,.9) 27%,
+        rgba(3,3,3,.6) 42%,
+        rgba(3,3,3,.25) 60%,
+        rgba(3,3,3,0) 78%),
+      radial-gradient(130% 90% at 50% 100%, rgba(0,0,0,0) 55%, rgba(0,0,0,.45) 100%);
+  }
+  .crowd-hero .fade::after {
+    content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 18%;
+    background: linear-gradient(to top, #030303 0%, rgba(3,3,3,0) 100%);
+  }
+
+  /* shorter band version used lower on the page */
+  .crowd-hero.crowd-strip { height: 360px; min-height: 0; }
+  .crowd-strip .fade {
+    background: linear-gradient(to bottom, #030303 0%, rgba(3,3,3,.75) 18%, rgba(3,3,3,.2) 45%, rgba(3,3,3,0) 70%);
+  }
+  .crowd-hero.crowd-strip .copy { top: 26px; }
+
+  .crowd-hero .copy { color: #fff; font-family: ui-monospace, "SFMono-Regular", "JetBrains Mono", Menlo, Consolas, monospace; position: absolute; left: 0; right: 0; top: 13vh; text-align: center; pointer-events: none; z-index: 2; }
+  .crowd-hero .kicker { display: block; margin-bottom: 12px; font-size: 11px; letter-spacing: .4em; text-transform: uppercase; color: #8a8a8a; }
+  .crowd-hero .role {
+    display: inline-block; color: #111; background: #f4f4f4;
+    padding: 2px 10px; margin: 6px 0; border: 2px solid #111; border-radius: 8px;
+    box-shadow: 0 0 0 3px #fff; font-weight: 700; letter-spacing: .12em;
+    animation: role-pop .45s cubic-bezier(.2,.9,.3,1.4);
+  }
+  @keyframes role-pop { from { opacity: 0; transform: translateY(8px) rotate(-3deg) scale(.9); } to { opacity: 1; transform: none; } }
+  .crowd-hero h1 { font-size: clamp(22px, 3.2vw, 40px); font-weight: 600; letter-spacing: .32em; padding-left: .32em; }
+  .crowd-hero p { margin-top: 14px; font-size: clamp(12px, 1.1vw, 14px); letter-spacing: .14em; color: #9a9a9a; text-transform: uppercase; line-height: 1.9; }
+  .crowd-hero .cta {
+    pointer-events: auto; display: inline-block; margin-top: 26px; padding: 12px 26px;
+    border: 1px solid rgba(255,255,255,.7); border-radius: 999px; color: #fff; text-decoration: none;
+    font-size: 12px; letter-spacing: .22em; text-transform: uppercase; background: rgba(3,3,3,.6); text-decoration: none;
+    transition: background .2s, color .2s;
+  }
+  .crowd-hero .cta:hover { background: #fff; color: #030303; }
+
+  .ch path, .ch circle, .ch ellipse, .ch rect {
+    stroke: var(--ink); stroke-width: 3; stroke-linejoin: round; stroke-linecap: round;
+  }
+  .crowd .halo { fill: var(--halo, #fff); stroke: var(--halo, #fff); stroke-width: 12; }
+  .crowd .ns { stroke: none; }
+  .crowd .eyes { transform-box: fill-box; transform-origin: center; }
+  .crowd .eyes.blink { animation: blink .2s ease-in-out; }
+  @keyframes blink { 50% { transform: scaleY(.1); } }
+
+  /* respect users who turn off animations in their OS */
+  @media (prefers-reduced-motion: reduce) {
+    .crowd-hero .role { animation: none; }
+    .crowd .eyes.blink, .peeker .eyes.blink { animation: none; }
+    .crowd-hero .crowd { transition: none; }
+  }

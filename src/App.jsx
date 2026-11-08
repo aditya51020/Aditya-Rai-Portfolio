@@ -1,15 +1,12 @@
 import React, { useEffect } from 'react';
+import { PeekRow } from './components/Peekers';
+import CrowdStrip from './components/CrowdStrip';
+import { initPeekers } from './components/crowd';
 import Lenis from 'lenis';
 import BackgroundCanvas from './components/BackgroundCanvas';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import Trust from './components/Trust';
-import Projects from './components/Projects';
-import Services from './components/Services';
-import TechStack from './components/TechStack';
-import Process from './components/Process';
-import About from './components/About';
-import Testimonials from './components/Testimonials';
+import CrowdHero from './components/CrowdHero';
+import ProfileHub from './components/ProfileHub';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
@@ -17,8 +14,7 @@ export default function App() {
   // Initialize Lenis smooth scroll
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      lerp: 0.085,
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
@@ -43,8 +39,11 @@ export default function App() {
     };
   }, []);
 
+  // every [data-peeker] on the page gets a character that watches the cursor
+  useEffect(() => initPeekers(), []);
+
   return (
-    <div className="relative min-h-screen selection:bg-zinc-800 selection:text-white overflow-hidden text-zinc-300 font-sans bg-[#030303]">
+    <div className="relative min-h-screen selection:bg-zinc-800 selection:text-white overflow-x-clip text-zinc-300 font-sans bg-[#030303]">
       {/* Premium background canvas (lines, slow particles, cursor glow follow) */}
       <BackgroundCanvas />
 
@@ -53,15 +52,11 @@ export default function App() {
 
       {/* Content wrapper */}
       <main className="relative z-10 w-full">
-        <Hero />
-        <Trust />
-        <Projects />
-        <Services />
-        <TechStack />
-        <Process />
-        <About />
-        <Testimonials />
+        <CrowdHero />
+        <ProfileHub />
+        <CrowdStrip />
         <Contact />
+        <PeekRow people={[{ seed: 64, size: 127, x: 6 }, { seed: 12, size: 109, x: 34, flip: true }, { seed: 45, size: 120, x: 62 }, { seed: 88, size: 104, x: 86, flip: true }]} />
         <Footer />
       </main>
     </div>

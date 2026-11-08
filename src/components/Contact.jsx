@@ -68,7 +68,7 @@ export default function Contact() {
               </span>
               <a
                 href="mailto:adityaworkdesk@gmail.com"
-                className="flex items-center space-x-3 text-sm text-zinc-300 hover:text-white transition-colors duration-300 group"
+                className="flex items-center space-x-3 py-2 text-sm text-zinc-300 hover:text-white transition-colors duration-300 group break-all"
               >
                 <Mail className="h-4 w-4 text-zinc-500 group-hover:text-white transition-colors duration-300" />
                 <span>adityaworkdesk@gmail.com</span>
@@ -77,7 +77,7 @@ export default function Contact() {
 
             <div className="flex space-x-4 pt-2">
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/aditya-rai01"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2.5 rounded-sm bg-white/[0.02] border border-white/[0.05] hover:border-white/20 hover:text-white text-zinc-400 transition-all duration-300"
@@ -98,7 +98,7 @@ export default function Contact() {
                 </svg>
               </a>
               <a
-                href="https://github.com"
+                href="https://github.com/aditya51020"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2.5 rounded-sm bg-white/[0.02] border border-white/[0.05] hover:border-white/20 hover:text-white text-zinc-400 transition-all duration-300"

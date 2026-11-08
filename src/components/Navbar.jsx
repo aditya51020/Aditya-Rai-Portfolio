@@ -39,15 +39,14 @@ export default function Navbar() {
   const navLinks = [
     { label: 'Work', href: '#projects' },
     { label: 'Services', href: '#services' },
-    { label: 'Process', href: '#process' },
-    { label: 'About', href: '#about' },
+    { label: 'Contact', href: '#contact' },
   ];
 
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
         scrolled 
-          ? 'py-4 bg-[#030303]/60 backdrop-blur-xl border-b border-white/[0.04]' 
+          ? 'py-4 bg-[#030303]/90 border-b border-white/[0.06]' 
           : 'py-6 bg-transparent border-b border-transparent'
       }`}
     >
@@ -96,7 +95,7 @@ export default function Navbar() {
       </div>
 
       <div
-        className={`fixed inset-x-0 bottom-0 top-[60px] z-30 bg-[#030303]/98 backdrop-blur-2xl lg:hidden overflow-y-auto transition-all duration-500 ease-in-out ${
+        className={`fixed inset-x-0 bottom-0 top-[60px] z-30 bg-[#030303] lg:hidden overflow-y-auto transition-all duration-500 ease-in-out ${
           isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
       >
